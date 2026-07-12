@@ -31,7 +31,7 @@ export interface Project {
   githubUrl?: string;
   liveUrl?: string;
   /** lucide icon key, resolved inside ProjectsGrid */
-  icon: 'radar' | 'scale' | 'home' | 'scan';
+  icon: 'radar' | 'scale' | 'home' | 'scan' | 'mountain';
   featured?: boolean;
 }
 
@@ -42,7 +42,7 @@ export const PROJECTS: Project[] = [
     summary:
       'Cloud-native incident response platform monitoring infrastructure health — automated runbooks, on-call escalation, and real-time service topology.',
     stack: ['Go', 'Kubernetes', 'React', 'Grafana'],
-    githubUrl: 'https://github.com/arittroc/releasepilot',
+    githubUrl: 'https://github.com/arittroc/release-pilot',
     liveUrl: 'https://releasepilot.dev',
     icon: 'radar',
     featured: true,
@@ -53,7 +53,7 @@ export const PROJECTS: Project[] = [
     summary:
       'B2B SaaS system for automated bank reconciliation pipelines — ingests statements, matches ledger entries, and flags exceptions with full audit trails.',
     stack: ['TypeScript', 'PostgreSQL', 'Kafka', 'Temporal'],
-    githubUrl: 'https://github.com/arittroc/ledgerzero',
+    githubUrl: 'https://github.com/arittroc/LedgerZero',
     liveUrl: 'https://ledgerzero.app',
     icon: 'scale',
   },
@@ -63,7 +63,7 @@ export const PROJECTS: Project[] = [
     summary:
       'Real estate prediction application powered by a FastAPI deployment — localized market features feed a versioned model registry behind a clean REST edge.',
     stack: ['Python', 'FastAPI', 'scikit-learn', 'Docker'],
-    githubUrl: 'https://github.com/arittroc/house-price-oracle',
+    githubUrl: 'https://github.com/arittroc/end-to-end-mlops-pipeline',
     liveUrl: 'https://oracle.arittro.dev',
     icon: 'home',
   },
@@ -73,8 +73,19 @@ export const PROJECTS: Project[] = [
     summary:
       'An advanced Retrieval-Augmented Generation (RAG) system utilizing Optical Character Recognition (OCR) to extract, process, and query complex document data.',
     stack: ['Python', 'OCR', 'RAG', 'LLMs', 'Vector DB'],
-    // githubUrl / liveUrl intentionally omitted — not yet published
+    githubUrl: 'https://github.com/arittroc/vera',
+    // liveUrl intentionally omitted — not yet deployed
     icon: 'scan',
+  },
+  {
+    id: 'atmospheric-altitude-ascent',
+    title: 'Atmospheric Altitude Ascent',
+    summary:
+      'A scroll-driven WebGL 3D experience simulating the ascent to Nathu La Pass. Features a synchronized GSAP/Lenis camera rig, dynamic procedural weather systems, and a custom glassmorphic HUD.',
+    stack: ['React Three Fiber', 'Three.js', 'GSAP', 'Tailwind'],
+    githubUrl: 'https://github.com/arittroc/-Atmospheric-Altitude-Ascent',
+    // liveUrl intentionally omitted — not yet deployed
+    icon: 'mountain',
   },
 ];
 

@@ -7,6 +7,7 @@ import {
   Scale,
   Home,
   ScanText,
+  MountainSnow,
   type LucideIcon,
 } from 'lucide-react';
 import { GithubIcon } from './BrandIcons';
@@ -17,6 +18,7 @@ const ICONS: Record<Project['icon'], LucideIcon> = {
   scale: Scale,
   home: Home,
   scan: ScanText,
+  mountain: MountainSnow,
 };
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
