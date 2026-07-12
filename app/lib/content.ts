@@ -54,7 +54,7 @@ export const PROJECTS: Project[] = [
       'B2B SaaS system for automated bank reconciliation pipelines — ingests statements, matches ledger entries, and flags exceptions with full audit trails.',
     stack: ['TypeScript', 'PostgreSQL', 'Kafka', 'Temporal'],
     githubUrl: 'https://github.com/arittroc/LedgerZero',
-    liveUrl: 'https://ledgerzero.app',
+    liveUrl: 'https://ledger-zero.vercel.app/',
     icon: 'scale',
   },
   {
@@ -84,7 +84,7 @@ export const PROJECTS: Project[] = [
       'A scroll-driven WebGL 3D experience simulating the ascent to Nathu La Pass. Features a synchronized GSAP/Lenis camera rig, dynamic procedural weather systems, and a custom glassmorphic HUD.',
     stack: ['React Three Fiber', 'Three.js', 'GSAP', 'Tailwind'],
     githubUrl: 'https://github.com/arittroc/-Atmospheric-Altitude-Ascent',
-    // liveUrl intentionally omitted — not yet deployed
+    liveUrl: 'https://minus-eight.pages.dev/',
     icon: 'mountain',
   },
 ];
