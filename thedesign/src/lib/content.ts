@@ -1,0 +1,239 @@
+/**
+ * Central content layer.
+ *
+ * Every shape here mirrors the relational schema planned for Supabase
+ * (`projects`, `experience`, `blog_posts` tables), so swapping this file
+ * for live queries — or letting an n8n/agent pipeline POST rows in — is a
+ * drop-in change, not a refactor.
+ */
+
+/* ── Identity ─────────────────────────────────────────────────── */
+
+export const IDENTITY = {
+  name: 'Arittro C.',
+  brand: 'arittro',
+  brandSuffix: '.c',
+  tagline: 'SaaS & Cloud Engineer',
+  email: 'work.arittroc@gmail.com',
+  // TODO: confirm final handles before launch
+  github: 'https://github.com/arittroc',
+  linkedin: 'https://www.linkedin.com/in/arittroc',
+} as const;
+
+/* ── Projects ─────────────────────────────────────────────────── */
+
+export interface Project {
+  id: string;
+  title: string;
+  summary: string;
+  /** framework / infra badges shown on the card */
+  stack: string[];
+  githubUrl: string;
+  liveUrl: string;
+  /** lucide icon key, resolved inside ProjectsGrid */
+  icon: 'radar' | 'scale' | 'home' | 'heart' | 'calendar';
+  featured?: boolean;
+}
+
+export const PROJECTS: Project[] = [
+  {
+    id: 'releasepilot',
+    title: 'ReleasePilot',
+    summary:
+      'Cloud-native incident response platform monitoring infrastructure health — automated runbooks, on-call escalation, and real-time service topology.',
+    stack: ['Go', 'Kubernetes', 'React', 'Grafana'],
+    githubUrl: 'https://github.com/arittroc/releasepilot',
+    liveUrl: 'https://releasepilot.dev',
+    icon: 'radar',
+    featured: true,
+  },
+  {
+    id: 'ledgerzero',
+    title: 'LedgerZero',
+    summary:
+      'B2B SaaS system for automated bank reconciliation pipelines — ingests statements, matches ledger entries, and flags exceptions with full audit trails.',
+    stack: ['TypeScript', 'PostgreSQL', 'Kafka', 'Temporal'],
+    githubUrl: 'https://github.com/arittroc/ledgerzero',
+    liveUrl: 'https://ledgerzero.app',
+    icon: 'scale',
+  },
+  {
+    id: 'house-price-oracle',
+    title: 'House Price Oracle',
+    summary:
+      'Real estate prediction application powered by a FastAPI deployment — localized market features feed a versioned model registry behind a clean REST edge.',
+    stack: ['Python', 'FastAPI', 'scikit-learn', 'Docker'],
+    githubUrl: 'https://github.com/arittroc/house-price-oracle',
+    liveUrl: 'https://oracle.arittro.dev',
+    icon: 'home',
+  },
+  {
+    id: 'heartunes',
+    title: 'Heartunes',
+    summary:
+      'A digital collaborative music gifting space — build shared soundtracks with people you love and unwrap them together in real time.',
+    stack: ['Next.js', 'Supabase', 'Stripe', 'Web Audio'],
+    githubUrl: 'https://github.com/arittroc/heartunes',
+    liveUrl: 'https://heartunes.app',
+    icon: 'heart',
+  },
+  {
+    id: 'parental-command-center',
+    title: 'Parental Command Center',
+    summary:
+      'Aggregates school communications — portals, emails, group chats — into one unified family planner with deadlines, permission slips, and reminders.',
+    stack: ['React Native', 'Supabase', 'n8n', 'LLM Agents'],
+    githubUrl: 'https://github.com/arittroc/parental-command-center',
+    liveUrl: 'https://pcc.arittro.dev',
+    icon: 'calendar',
+  },
+];
+
+/* ── Experience (bento) ───────────────────────────────────────── */
+
+export interface ExpertiseArea {
+  id: string;
+  title: string;
+  description: string;
+  icon: 'cloud' | 'server' | 'database' | 'workflow';
+  points: string[];
+}
+
+export const EXPERTISE: ExpertiseArea[] = [
+  {
+    id: 'cloud',
+    title: 'Cloud Setups',
+    description:
+      'Production-grade cloud architecture from VPC design to zero-downtime delivery.',
+    icon: 'cloud',
+    points: ['CI/CD pipelines', 'Blue-green deploys', 'Cost-aware scaling'],
+  },
+  {
+    id: 'homelab',
+    title: 'Home-Server Management',
+    description:
+      'Years of extensive self-hosted operations — a live lab for everything I ship.',
+    icon: 'server',
+    points: ['k3s clusters', 'NGINX reverse proxies', 'Uptime monitoring'],
+  },
+  {
+    id: 'data',
+    title: 'Data Normalization',
+    description:
+      'Scalable relational schemas that stay fast and truthful as products grow.',
+    icon: 'database',
+    points: ['Schema design', 'Migration pipelines', 'Query optimization'],
+  },
+  {
+    id: 'ai',
+    title: 'AI Logic Gates',
+    description:
+      'Complex automated decision flows where LLM judgment meets deterministic guardrails.',
+    icon: 'workflow',
+    points: ['Agentic workflows', 'n8n orchestration', 'LLM routing & evals'],
+  },
+];
+
+export interface Milestone {
+  year: string;
+  label: string;
+}
+
+export const MILESTONES: Milestone[] = [
+  { year: '2021', label: 'First production deploys' },
+  { year: '2022', label: 'Home-lab → k3s cluster' },
+  { year: '2023', label: 'Data platform work' },
+  { year: '2024', label: 'Cloud architecture lead' },
+  { year: '2025', label: 'AI automation systems' },
+  { year: '2026', label: 'Independent SaaS engineering' },
+];
+
+/* ── Blog ─────────────────────────────────────────────────────── */
+
+/**
+ * Mirrors the `blog_posts` table row shape 1:1. Backend agents POST this
+ * exact payload to the ingest endpoint; the feed renders whatever lands.
+ */
+export interface BlogPost {
+  id: number;
+  slug: string;
+  title: string;
+  excerpt: string;
+  tags: string[];
+  published_at: string; // ISO 8601, as stored in Postgres
+  reading_minutes: number;
+  source: 'human' | 'agent';
+}
+
+export const SEED_POSTS: BlogPost[] = [
+  {
+    id: 1,
+    slug: 'incident-response-toil',
+    title: 'Killing Incident-Response Toil with Runbook Automation',
+    excerpt:
+      'How ReleasePilot turned 2 a.m. pages into self-healing workflows — and the escalation logic that decides when a human still gets woken up.',
+    tags: ['SRE', 'Kubernetes', 'Automation'],
+    published_at: '2026-06-28T09:00:00Z',
+    reading_minutes: 7,
+    source: 'human',
+  },
+  {
+    id: 2,
+    slug: 'bank-reconciliation-pipelines',
+    title: 'Designing Reconciliation Pipelines That Auditors Trust',
+    excerpt:
+      'Idempotent ingestion, deterministic matching, and the exception queue pattern behind LedgerZero — a schema walkthrough.',
+    tags: ['PostgreSQL', 'Fintech', 'Data'],
+    published_at: '2026-05-14T09:00:00Z',
+    reading_minutes: 9,
+    source: 'human',
+  },
+  {
+    id: 3,
+    slug: 'ai-digest-pipeline',
+    title: 'This Blog Posts Itself: An Agent-to-API Content Pipeline',
+    excerpt:
+      'The n8n + LLM digest workflow that compiles weekly tech briefs and publishes them straight into this feed over a single POST endpoint.',
+    tags: ['AI Agents', 'n8n', 'Next.js'],
+    published_at: '2026-04-02T09:00:00Z',
+    reading_minutes: 6,
+    source: 'agent',
+  },
+];
+
+/**
+ * Data access seam for the blog feed.
+ *
+ * Today it resolves seed content; in production it becomes
+ * `fetch('/api/posts')` against the route that n8n/agents publish into —
+ * the component consuming it never changes.
+ */
+export async function getPosts(): Promise<BlogPost[]> {
+  const endpoint = import.meta.env.VITE_BLOG_API_URL as string | undefined;
+  if (endpoint) {
+    try {
+      const res = await fetch(endpoint);
+      if (res.ok) return (await res.json()) as BlogPost[];
+    } catch {
+      /* fall through to seed content */
+    }
+  }
+  return SEED_POSTS;
+}
+
+/* ── Demo form ────────────────────────────────────────────────── */
+
+export const SERVICE_TYPES = [
+  'SaaS MVP Build',
+  'Cloud Infrastructure & DevOps',
+  'AI Automation & Agents',
+  'Data Engineering',
+  'Something Else',
+] as const;
+
+export interface DemoRequest {
+  name: string;
+  email: string;
+  serviceType: (typeof SERVICE_TYPES)[number] | '';
+  message: string;
+}

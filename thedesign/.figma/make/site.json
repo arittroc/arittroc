@@ -1,0 +1,10 @@
+{
+  "description": "Showcase your skills with a modern, minimal SaaS developer portfolio that highlights projects, experience, and connects with potential clients.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
