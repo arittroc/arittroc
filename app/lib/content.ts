@@ -37,17 +37,6 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    id: 'releasepilot',
-    title: 'ReleasePilot',
-    summary:
-      'Cloud-native incident response platform monitoring infrastructure health — automated runbooks, on-call escalation, and real-time service topology.',
-    stack: ['Go', 'Kubernetes', 'React', 'Grafana'],
-    githubUrl: 'https://github.com/arittroc/release-pilot',
-    liveUrl: 'https://releasepilot.dev',
-    icon: 'radar',
-    featured: true,
-  },
-  {
     id: 'ledgerzero',
     title: 'LedgerZero',
     summary:
@@ -56,16 +45,6 @@ export const PROJECTS: Project[] = [
     githubUrl: 'https://github.com/arittroc/LedgerZero',
     liveUrl: 'https://ledger-zero.vercel.app/',
     icon: 'scale',
-  },
-  {
-    id: 'house-price-oracle',
-    title: 'House Price Oracle',
-    summary:
-      'Real estate prediction application powered by a FastAPI deployment — localized market features feed a versioned model registry behind a clean REST edge.',
-    stack: ['Python', 'FastAPI', 'scikit-learn', 'Docker'],
-    githubUrl: 'https://github.com/arittroc/end-to-end-mlops-pipeline',
-    liveUrl: 'https://oracle.arittro.dev',
-    icon: 'home',
   },
   {
     id: 'vera',
@@ -86,6 +65,27 @@ export const PROJECTS: Project[] = [
     githubUrl: 'https://github.com/arittroc/-Atmospheric-Altitude-Ascent',
     liveUrl: 'https://minus-eight.pages.dev/',
     icon: 'mountain',
+  },
+  {
+    id: 'house-price-oracle',
+    title: 'House Price Oracle',
+    summary:
+      'Real estate prediction application powered by a FastAPI deployment — localized market features feed a versioned model registry behind a clean REST edge.',
+    stack: ['Python', 'FastAPI', 'scikit-learn', 'Docker'],
+    githubUrl: 'https://github.com/arittroc/end-to-end-mlops-pipeline',
+    liveUrl: 'https://oracle.arittro.dev',
+    icon: 'home',
+  },
+  {
+    id: 'releasepilot',
+    title: 'ReleasePilot',
+    summary:
+      'Cloud-native incident response platform monitoring infrastructure health — automated runbooks, on-call escalation, and real-time service topology.',
+    stack: ['Go', 'Kubernetes', 'React', 'Grafana'],
+    githubUrl: 'https://github.com/arittroc/release-pilot',
+    liveUrl: 'https://releasepilot.dev',
+    icon: 'radar',
+    featured: true,
   },
 ];
 
