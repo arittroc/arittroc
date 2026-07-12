@@ -15,7 +15,6 @@ export const IDENTITY = {
   brandSuffix: '.c',
   tagline: 'SaaS & Cloud Engineer',
   email: 'work.arittroc@gmail.com',
-  // TODO: confirm final handles before launch
   github: 'https://github.com/arittroc',
   linkedin: 'https://www.linkedin.com/in/arittroc',
 } as const;
@@ -28,8 +27,9 @@ export interface Project {
   summary: string;
   /** framework / infra badges shown on the card */
   stack: string[];
-  githubUrl: string;
-  liveUrl: string;
+  /** omit while a project has no public repo/domain yet — ProjectsGrid hides the icon instead of rendering a broken link */
+  githubUrl?: string;
+  liveUrl?: string;
   /** lucide icon key, resolved inside ProjectsGrid */
   icon: 'radar' | 'scale' | 'home' | 'scan';
   featured?: boolean;
@@ -73,9 +73,7 @@ export const PROJECTS: Project[] = [
     summary:
       'An advanced Retrieval-Augmented Generation (RAG) system utilizing Optical Character Recognition (OCR) to extract, process, and query complex document data.',
     stack: ['Python', 'OCR', 'RAG', 'LLMs', 'Vector DB'],
-    // Placeholder links — swap in the real repo/domain when published
-    githubUrl: 'https://github.com/arittroc',
-    liveUrl: 'https://example.com',
+    // githubUrl / liveUrl intentionally omitted — not yet published
     icon: 'scan',
   },
 ];

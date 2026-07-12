@@ -40,24 +40,28 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           <Icon className="w-6 h-6" />
         </span>
         <span className="flex gap-1">
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${project.title} source on GitHub`}
-            className="p-2.5 rounded-full text-muted-foreground hover:text-foreground hover:bg-white/70 transition-colors"
-          >
-            <GithubIcon className="w-5 h-5" />
-          </a>
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${project.title} live site`}
-            className="p-2.5 rounded-full text-muted-foreground hover:text-foreground hover:bg-white/70 transition-colors"
-          >
-            <ExternalLink className="w-5 h-5" />
-          </a>
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${project.title} source on GitHub`}
+              className="p-2.5 rounded-full text-muted-foreground hover:text-foreground hover:bg-white/70 transition-colors"
+            >
+              <GithubIcon className="w-5 h-5" />
+            </a>
+          )}
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${project.title} live site`}
+              className="p-2.5 rounded-full text-muted-foreground hover:text-foreground hover:bg-white/70 transition-colors"
+            >
+              <ExternalLink className="w-5 h-5" />
+            </a>
+          )}
         </span>
       </div>
 

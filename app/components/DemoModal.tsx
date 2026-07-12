@@ -5,14 +5,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, CheckCircle2, AlertTriangle, Loader2 } from 'lucide-react';
 import { SERVICE_TYPES, type DemoRequest } from '@/lib/content';
 import { closeDemoModal, useDemoModalOpen } from '@/lib/demo-modal-store';
+import { submitDemoForm } from '@/actions/submit-demo';
 
 /**
  * "Book a Demo" overlay. Mounted once from page.tsx with no props —
  * visibility comes from the demo-modal store (Navbar/Hero call
- * openDemoModal()). Submission POSTs the payload to the n8n webhook
- * (NEXT_PUBLIC_DEMO_WEBHOOK_URL) which appends a row to the target
- * Google Sheet and fires the alert workflow. Without the env var
- * (local dev) it simulates success so the UX remains testable.
+ * openDemoModal()). Submission runs through the submitDemoForm Server
+ * Action, which POSTs to the n8n webhook server-side (keeping the URL
+ * out of the client bundle and sidestepping browser CORS) and appends a
+ * row to the target Google Sheet.
  */
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
@@ -22,24 +23,6 @@ const EMPTY_FORM: DemoRequest = { name: '', email: '', serviceType: '', message:
 const inputClasses =
   'w-full glass-panel font-body rounded-2xl px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 ' +
   'focus:ring-2 focus:ring-accent/30 focus:border-accent/30 transition-all bg-white/70';
-
-async function submitDemoRequest(payload: DemoRequest): Promise<void> {
-  const webhook = process.env.NEXT_PUBLIC_DEMO_WEBHOOK_URL;
-
-  if (!webhook) {
-    // Local dev: no pipeline configured — simulate the round trip.
-    await new Promise((r) => setTimeout(r, 900));
-    console.info('[DemoModal] NEXT_PUBLIC_DEMO_WEBHOOK_URL not set; payload:', payload);
-    return;
-  }
-
-  const res = await fetch(webhook, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ ...payload, submitted_at: new Date().toISOString() }),
-  });
-  if (!res.ok) throw new Error(`Webhook responded ${res.status}`);
-}
 
 export default function DemoModal() {
   const open = useDemoModalOpen();
@@ -78,7 +61,7 @@ export default function DemoModal() {
     if (status === 'submitting') return;
     setStatus('submitting');
     try {
-      await submitDemoRequest(form);
+      await submitDemoForm(form);
       setStatus('success');
     } catch {
       setStatus('error');
