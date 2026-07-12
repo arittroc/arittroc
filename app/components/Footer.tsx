@@ -31,7 +31,7 @@ export default function Footer() {
             {subscribed ? (
               <p className="font-body inline-flex items-center gap-2 glass-panel rounded-full px-5 py-3 text-sm font-medium text-primary">
                 <Check className="w-4 h-4" />
-                You're on the list — first digest lands soon.
+                You&apos;re on the list — first digest lands soon.
               </p>
             ) : (
               <form onSubmit={handleSubscribe} className="relative flex max-w-md">

@@ -143,7 +143,7 @@ export default function DemoModal({
                   Let's scope your build.
                 </h3>
                 <p className="text-sm text-muted-foreground mb-8">
-                  A 30-minute walkthrough of what I'd ship for you — no decks,
+                  A 30-minute walkthrough of what I&apos;d ship for you — no decks,
                   just working systems.
                 </p>
 

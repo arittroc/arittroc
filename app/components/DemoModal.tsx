@@ -44,9 +44,14 @@ export default function DemoModal() {
     };
   }, [open]);
 
-  // Fresh form every time the modal opens
+  // Fresh form every time the modal opens. This intentionally sets state
+  // synchronously in an effect (react-hooks/set-state-in-effect) — `open`
+  // comes from an external store (useSyncExternalStore), not a prop, so
+  // React's usual "adjust state during render" alternative doesn't apply
+  // cleanly here and produced a real reset bug when tried.
   useEffect(() => {
     if (open) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setForm(EMPTY_FORM);
       setStatus('idle');
       requestAnimationFrame(() => nameRef.current?.focus());
@@ -109,7 +114,7 @@ export default function DemoModal() {
                   Request received
                 </h3>
                 <p className="font-body text-muted-foreground mb-8 max-w-sm mx-auto">
-                  Thanks, {form.name.split(' ')[0] || 'there'} — I'll get back to
+                  Thanks, {form.name.split(' ')[0] || 'there'} — I&apos;ll get back to
                   you within 24 hours to line up the demo.
                 </p>
                 <button
@@ -128,10 +133,10 @@ export default function DemoModal() {
                   id="demo-modal-title"
                   className="font-display text-3xl font-bold tracking-tight mb-2"
                 >
-                  Let's scope your build.
+                  Let&apos;s scope your build.
                 </h3>
                 <p className="font-body text-sm text-muted-foreground mb-8">
-                  A 30-minute walkthrough of what I'd ship for you — no decks,
+                  A 30-minute walkthrough of what I&apos;d ship for you — no decks,
                   just working systems.
                 </p>
 
