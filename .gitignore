@@ -46,3 +46,6 @@ thedesign/dist/
 
 # local development tracking (never committed)
 notes/
+
+# agent operational directives (local-only, never committed)
+claude.md

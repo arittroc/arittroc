@@ -140,9 +140,10 @@ export interface Milestone {
 }
 
 export const MILESTONES: Milestone[] = [
-  { year: '2024', label: 'First production deploys' },
-  { year: '2025', label: 'Home-lab k3s cluster & data platform work' },
-  { year: '2026', label: 'AI automation & independent SaaS engineering' },
+  { year: '2023', label: 'First production deploys' },
+  { year: '2024', label: 'Home-lab k3s cluster' },
+  { year: '2025', label: 'Data platform & AI automation work' },
+  { year: '2026', label: 'Independent SaaS engineering' },
 ];
 
 /* ── Blog ─────────────────────────────────────────────────────── */

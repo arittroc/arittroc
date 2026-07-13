@@ -57,7 +57,7 @@ export default function ExperienceTimeline() {
           Track record
         </p>
         <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight mb-4">
-          Two Years, Full Stack to Bare Metal
+          Three Years, Full Stack to Bare Metal
         </h2>
         <p className="font-body text-lg text-muted-foreground">
           Seasoned across the whole delivery surface — from racking home-lab
@@ -85,11 +85,11 @@ export default function ExperienceTimeline() {
             }}
           />
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground relative z-10">
-            Since 2024
+            Since 2023
           </p>
           <div className="relative z-10">
             <div className="font-display text-7xl md:text-8xl font-extrabold tracking-tight text-gradient leading-none mb-4">
-              2+ yrs
+              3+ yrs
             </div>
             <p className="font-body text-muted-foreground leading-relaxed max-w-md">
               of executing cloud setups, running extensive home-server fleets,
@@ -111,7 +111,7 @@ export default function ExperienceTimeline() {
         >
           <div className="relative">
             <div className="absolute left-0 right-0 top-[7px] h-px bg-gradient-to-r from-primary/10 via-accent/40 to-primary/10" />
-            <ol className="relative grid grid-cols-3 gap-y-8">
+            <ol className="relative grid grid-cols-2 sm:grid-cols-4 gap-y-8">
               {MILESTONES.map((m) => (
                 <li key={m.year} className="flex flex-col items-start pr-4">
                   <span className="w-[15px] h-[15px] rounded-full bg-background border-2 border-accent shadow-[0_0_12px_rgba(142,45,226,0.45)] mb-4" />
